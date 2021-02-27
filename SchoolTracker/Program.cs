@@ -13,29 +13,36 @@ namespace SchoolTracker
 
             while (adding)
             {
-                var newStudent = new Student();
+                try
+                {
+                    var newStudent = new Student();
 
+                    newStudent.Name = Util.Console.Ask("Student Name: ");
 
-                newStudent.Name = Util.Console.Ask("Student Name: ");
+                    newStudent.Grade = int.Parse(Util.Console.Ask("Student Grade: "));
 
-                newStudent.Grade = int.Parse(Util.Console.Ask("Student Grade: "));
+                    newStudent.Birthday = Util.Console.Ask("Student Birthday: ");
 
-                newStudent.Birthday = Util.Console.Ask("Student Birthday: ");
+                    newStudent.Address = Util.Console.Ask("Student Address: ");
 
-                newStudent.Address = Util.Console.Ask("Student Address: ");
+                    newStudent.Phone = int.Parse(Util.Console.Ask("Student Phone: "));
 
-                newStudent.Phone = int.Parse(Util.Console.Ask("Student Phone: "));
+                    students.Add(newStudent);
+                    Student.Count++;
+                    Console.WriteLine("Student Count: {0}", Student.Count);
 
-                students.Add(newStudent);
-                Student.Count++;
-                Console.WriteLine("Student Count: {0}", Student.Count);  
+                    Console.WriteLine("Add another? y/n");
 
-                Console.WriteLine("Add another? y/n");
+                    if (Console.ReadLine() != "y")
+                        adding = false;
 
-                if (Console.ReadLine() != "y")
-                    adding = false;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Error, try again");
+                }
+ 
             }
-
             foreach (var student in students)
             {
                 Console.WriteLine("Name: {0}, studentGrades: {1}", student.Name, student.Grade);

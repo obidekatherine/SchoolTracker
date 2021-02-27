@@ -35,7 +35,10 @@ namespace SchoolTracker
 
                     if (Console.ReadLine() != "y")
                         adding = false;
-
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("input was not a number");
                 }
                 catch (Exception)
                 {
@@ -93,4 +96,5 @@ class Teacher : Member
     {
         public string Subject;
     }
+
 }
